@@ -3,7 +3,7 @@
 
 #include <cstdlib>
 
-namespace Annette {
+namespace ANNette {
   float rand01();
 }
 

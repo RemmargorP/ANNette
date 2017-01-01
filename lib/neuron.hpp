@@ -3,7 +3,7 @@
 
 #include <unordered_map>
 
-namespace Annette {
+namespace ANNette {
 
   class Neuron {
   protected:
@@ -11,6 +11,7 @@ namespace Annette {
     std::unordered_map<Neuron*, float> in;
   public:
     Neuron();
+    ~Neuron();
 
     void dependOn(Neuron *target);
     void deleteDependency(Neuron *target);

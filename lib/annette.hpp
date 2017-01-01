@@ -3,5 +3,6 @@
 
 #include "utils.hpp"
 #include "neuron.hpp"
+#include "layer.hpp"
 
 #endif

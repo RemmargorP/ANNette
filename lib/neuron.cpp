@@ -3,11 +3,15 @@
 #include "utils.hpp"
 #include "neuron.hpp"
 
-namespace Annette {
+namespace ANNette {
 
   Neuron::Neuron() {
-    value = 0;
+    out = value = 0;
     bias = rand01();
+  }
+
+  Neuron::~Neuron() {
+    in.clear();
   }
 
   void Neuron::dependOn(Neuron *target) {

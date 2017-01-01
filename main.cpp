@@ -14,7 +14,7 @@ int main() {
   float mn = 1;
 
   for (int i = 0; i < 10000; ++i) {
-    Annette::Neuron n;
+    ANNette::Neuron n;
     mn = min(mn, n.calculate());
   }
 
