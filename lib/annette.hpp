@@ -4,5 +4,6 @@
 #include "utils.hpp"
 #include "neuron.hpp"
 #include "layer.hpp"
+#include "network.hpp"
 
 #endif

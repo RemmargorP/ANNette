@@ -11,7 +11,7 @@ namespace ANNette {
   private:
     std::vector<Neuron*> neurons;
   public:
-    Layer(int cnt);
+    Layer(size_t cnt);
 
     void calculate();
     void dependOn(Layer *target);

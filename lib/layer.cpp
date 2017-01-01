@@ -2,9 +2,9 @@
 
 namespace ANNette {
 
-  Layer::Layer(int cnt) {
+  Layer::Layer(size_t cnt) {
     neurons.resize(cnt);
-    for (int i = 0; i < cnt; ++i) {
+    for (size_t i = 0; i < cnt; ++i) {
       neurons[i] = new Neuron();
     }
   }
