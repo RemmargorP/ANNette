@@ -7,11 +7,16 @@
 
 namespace ANNette {
 
+  // Input layer is out of Network
+  // dep: inp <- network[]
+  // network.back() - output layer
+
   class Network {
   private:
+    Layer *input;
     std::vector<Layer*> layers;
   public:
-    Network();
+    Network(Layer *input);
 
     void addLayer(Layer* layer);
 
@@ -19,7 +24,10 @@ namespace ANNette {
     Layer* back() const;
     Layer* getLayer(size_t cnt) const;
 
-    void calculate();
+    std::vector<float> calculate(const std::vector<float> &data);
+    void updateWeights(float learningRate);
+    void backPropagate(const std::vector<float> &expected); // expected.size() == back().size() !!
+
   };
 
 }

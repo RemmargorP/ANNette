@@ -7,18 +7,29 @@ namespace ANNette {
 
   class Neuron {
   protected:
-    float value, out, bias;
+    float out, bias;
+    float delta;
     std::unordered_map<Neuron*, float> in;
   public:
+
     Neuron();
     ~Neuron();
 
     void dependOn(Neuron *target);
     void deleteDependency(Neuron *target);
+    float getWeight(Neuron *target);
 
     float calculate();
     float activate(float value) const;
+    float activateDerivative() const;
+
+    void changeWeight(Neuron *target, float delta);
+    void changeBias(float delta);
+
     float getValue() const;
+    void setValue(float v);
+    float getDelta() const;
+    void setDelta(float v);
   };
 
 };

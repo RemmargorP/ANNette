@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include "layer.hpp"
 
 namespace ANNette {
@@ -22,6 +24,12 @@ namespace ANNette {
       for (size_t j = 0; j < target->size(); ++j) {
         neurons[i]->dependOn(target->getNeuron(j));
       }
+    }
+  }
+
+  void Layer::setValues(const std::vector<float> &v) {
+    for (size_t i = 0; i < std::min(v.size(), neurons.size()); i++) {
+      neurons[i]->setValue(v[i]);
     }
   }
 

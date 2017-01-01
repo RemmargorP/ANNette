@@ -15,6 +15,7 @@ namespace ANNette {
 
     void calculate();
     void dependOn(Layer *target);
+    void setValues(const std::vector<float> &v);
 
     size_t size() const;
     Neuron* getNeuron(size_t i) const;
