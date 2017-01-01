@@ -1,10 +1,7 @@
 all: clean build
 
 build:
-	cd src && \
-	g++ -O2 -Wall annette.cpp
-
-
-
+	g++ -std=c++11 -O2 -Wall main.cpp lib/*.cpp -o main
 
 clean:
+	rm main -f
