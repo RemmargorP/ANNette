@@ -2,6 +2,8 @@
 #define __NETWORK_H__
 
 #include <vector>
+#include <sstream>
+#include <string>
 
 #include "layer.hpp"
 
@@ -28,6 +30,8 @@ namespace ANNette {
     void updateWeights(float learningRate);
     void backPropagate(const std::vector<float> &expected); // expected.size() == back().size() !!
 
+    std::string dump() const;
+    static Network* load(std::string);
   };
 
 }

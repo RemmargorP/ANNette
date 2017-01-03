@@ -1,4 +1,7 @@
 #include <cmath>
+#include <iostream>
+#include <fstream>
+#include <sstream>
 
 #include "utils.hpp"
 #include "neuron.hpp"
@@ -67,4 +70,11 @@ namespace ANNette {
     delta = v;
   }
 
+  std::string Neuron::dump() const {
+    std::stringstream res;
+    res << "neuron " << (int*)this << ' ' << bias << ' ' << in.size() << ' ';
+    for (auto d : in)
+      res << d.first << ' ' << d.second << ' ';
+    return res.str();
+  }
 }

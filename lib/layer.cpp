@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <sstream>
 
 #include "layer.hpp"
 
@@ -40,6 +41,14 @@ namespace ANNette {
   Neuron* Layer::getNeuron(size_t i) const {
     if (i >= neurons.size()) return nullptr;
     return neurons[i];
+  }
+
+  std::string Layer::dump() const {
+    std::stringstream res;
+    res << "layer " << (int*)this << ' ' << neurons.size();
+    for (auto n : neurons)
+      res << std::endl << n->dump();
+    return res.str();
   }
 
 }

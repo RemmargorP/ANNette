@@ -2,6 +2,7 @@
 #define __NEURON_H__
 
 #include <unordered_map>
+#include <string>
 
 namespace ANNette {
 
@@ -30,6 +31,8 @@ namespace ANNette {
     void setValue(float v);
     float getDelta() const;
     void setDelta(float v);
+
+    std::string dump() const;
   };
 
 };

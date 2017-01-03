@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <cmath>
+#include <fstream>
 
 #include "lib/annette.hpp"
 
@@ -41,6 +42,10 @@ int main() {
     vector<float> res = net.calculate(dataset[i].first);
     printf("TEST data: %ld ^ %ld = %f\n", lround(dataset[i].first[0]), lround(dataset[i].first[1]), res[0]);
   }
+
+  ofstream f("net.dump");
+  f << net.dump() << endl;
+  f.close();
 
   return 0;
 }

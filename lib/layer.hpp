@@ -19,6 +19,8 @@ namespace ANNette {
 
     size_t size() const;
     Neuron* getNeuron(size_t i) const;
+
+    std::string dump() const;
   };
 
 }

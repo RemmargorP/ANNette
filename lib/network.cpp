@@ -85,4 +85,13 @@ namespace ANNette {
     }
   }
 
+  std::string Network::dump() const {
+    std::stringstream res;
+    res << "network " << (int*)this << ' ' << layers.size() + 1;
+    res << std::endl << input->dump();
+    for (auto l : layers)
+      res << std::endl << l->dump();
+    return res.str();
+  }
+
 }

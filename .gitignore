@@ -1,5 +1,7 @@
 main
 
+kaggle_examples/*
+
 # Compiled Object files
 *.slo
 *.lo
