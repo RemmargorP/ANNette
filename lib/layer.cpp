@@ -12,6 +12,10 @@ namespace ANNette {
     }
   }
 
+  Layer::Layer(std::vector<Neuron*> d) {
+    neurons = d;
+  }
+
   void Layer::calculate() {
     for (size_t i = 0; i < neurons.size(); ++i) {
       neurons[i]->calculate();
@@ -45,7 +49,7 @@ namespace ANNette {
 
   std::string Layer::dump() const {
     std::stringstream res;
-    res << "layer " << (int*)this << ' ' << neurons.size();
+    res << "layer " << (size_t)this << ' ' << neurons.size();
     for (auto n : neurons)
       res << std::endl << n->dump();
     return res.str();

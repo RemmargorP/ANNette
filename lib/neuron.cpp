@@ -72,9 +72,25 @@ namespace ANNette {
 
   std::string Neuron::dump() const {
     std::stringstream res;
-    res << "neuron " << (int*)this << ' ' << bias << ' ' << in.size() << ' ';
+    res << "neuron " << (size_t)this << ' ' << bias << ' ' << in.size() << ' ';
     for (auto d : in)
-      res << d.first << ' ' << d.second << ' ';
+      res << (size_t)d.first << ' ' << d.second << ' ';
     return res.str();
+  }
+
+  void Neuron::load(float bias, std::vector<std::pair<Neuron*, float>> deps) {
+    // std::cerr << "Loading to neuron " << (size_t)this << ' ' << bias << ' ';
+    // for (auto d : deps)
+    //   std::cerr << (size_t)d.first << ' ' << d.second << ' ';
+    // std::cerr << std::endl;
+
+    this->bias = bias;
+
+    this->in.clear();
+    for (auto d : deps) {
+      // std::cerr << "Setting weight for " << (size_t)d.first << "->" << d.second << ": ";
+      this->in[d.first] = d.second;
+      // std::cerr << this->in[d.first] << std::endl;
+    }
   }
 }

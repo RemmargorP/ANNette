@@ -3,6 +3,8 @@
 
 #include <unordered_map>
 #include <string>
+#include <utility>
+#include <vector>
 
 namespace ANNette {
 
@@ -33,6 +35,7 @@ namespace ANNette {
     void setDelta(float v);
 
     std::string dump() const;
+    void load(float bias, std::vector<std::pair<Neuron*, float>> deps);
   };
 
 };
