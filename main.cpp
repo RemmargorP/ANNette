@@ -42,29 +42,31 @@ void learn(ANNette::Network *net) {
 int main() {
   srand(time(NULL));
 
-  ANNette::Network *net = new ANNette::Network(new ANNette::Layer(2));
-  net->addLayer(new ANNette::Layer(3));
-  net->addLayer(new ANNette::Layer(1));
+  if (0) {
+    ANNette::Network *net = new ANNette::Network(new ANNette::Layer(2));
+    net->addLayer(new ANNette::Layer(5));
+    net->addLayer(new ANNette::Layer(1));
 
-  learn(net);
+    learn(net);
 
-  ofstream out("net.dump");
-  out << net->dump() << endl;
-  out.close();
+    ofstream out("net.dump");
+    out << net->dump() << endl;
+    out.close();
+  } else {
+    ifstream in("net.dump");
 
-  ifstream in("net.dump");
+    std::stringstream tmp;
+    tmp << in.rdbuf();
 
-  std::stringstream tmp;
-  tmp << in.rdbuf();
+    ANNette::Network *sec = ANNette::Network::load(tmp.str());
+    in.close();
 
-  ANNette::Network *sec = ANNette::Network::load(tmp.str());
-  in.close();
+    learn(sec);
 
-  learn(sec);
-
-  ofstream outsec("net2.dump");
-  outsec << sec->dump() << endl;
-  outsec.close();
+    ofstream out("net.dump");
+    out << sec->dump() << endl;
+    out.close();
+  }
 
   return 0;
 }

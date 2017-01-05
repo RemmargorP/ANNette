@@ -1,6 +1,8 @@
 main
 
-kaggle_examples/*
+kaggle_examples/*/main
+kaggle_examples/*/net.dump
+kaggle_examples/*/submission.csv
 
 # Compiled Object files
 *.slo
