@@ -2,7 +2,7 @@ main
 
 kaggle_examples/*/main
 kaggle_examples/*/net.dump
-kaggle_examples/*/submission.csv
+kaggle_examples/*/*.csv
 
 # Compiled Object files
 *.slo
