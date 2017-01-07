@@ -1,7 +1,14 @@
 all: clean build
 
-build:
-	g++ -std=c++11 -O2 -Wall main.cpp ../../lib/*.cpp -I../../ -o main
+build: learn predict
+
+learn:
+	rm -f learn
+	g++ -std=c++11 -O2 -Wall learn.cpp ../../lib/*.cpp -I../../ -o learn
+
+predict:
+	rm -f predict
+	g++ -std=c++11 -O2 -Wall predict.cpp ../../lib/*.cpp -I../../ -o predict
 
 clean:
-	rm main -f
+	rm learn predict -f

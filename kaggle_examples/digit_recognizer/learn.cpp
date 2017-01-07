@@ -58,60 +58,36 @@ Data readData(size_t sets) {
   return dataset;
 }
 
-int main() {
+int main(int argc, char** argv) {
   srand(time(NULL));
 
-  ifstream in("net.dump");
+  ANNette::Network *net;
 
-  std::stringstream tmp;
-  tmp << in.rdbuf();
+  if (argc > 1) {
+    net = new ANNette::Network(new ANNette::Layer(PIXELS));
+    net->addLayer(new ANNette::Layer(200));
+    net->addLayer(new ANNette::Layer(40));
+    net->addLayer(new ANNette::Layer(10));
+  } else {
+    ifstream in("net.dump");
 
-  ANNette::Network *net = ANNette::Network::load(tmp.str());
+    std::stringstream tmp;
+    tmp << in.rdbuf();
 
-  // ANNette::Network *net = new ANNette::Network(new ANNette::Layer(PIXELS));
-  // net->addLayer(new ANNette::Layer(150));
-  // net->addLayer(new ANNette::Layer(10));
-
+    net = ANNette::Network::load(tmp.str());
+  }
+  
   int sets = 42000;
   Data dataset = readData(sets);
 
-  const size_t epochs = 20;
-
-  for (size_t i = 0; i < epochs; ++i) {
-    float err = epoch(net, dataset, 0.05);
+  for (size_t i = 0; true; ++i) {
+    float err = epoch(net, dataset, 0.4);
     cerr << "\r                                                 \rEpoch #" << i << ' ' << err << endl;
 
     ofstream out("net.dump");
     out << net->dump() << endl;
     out.close();
   }
-
-  // ofstream out("submission.csv");
-  // out << "ImageId,Label" << endl;
-  //
-  // ifstream test("test.csv");
-  //
-  // for (int i = 1; i <= 28000; ++i) {
-  //   out << i << ',';
-  //   vector<float> data(PIXELS);
-  //   char tmpc;
-  //   for (size_t j = 0; j < PIXELS; ++j) {
-  //     if (j) test >> tmpc;
-  //     test >> data[j];
-  //     data[j] /= 256;
-  //   }
-  //
-  //   auto res = net->calculate(data);
-  //   int mx = 0;
-  //   for (int j = 0; j < 10; ++j) {
-  //     if (res[j] > res[mx]) mx = j;
-  //   }
-  //
-  //   out << mx << endl;
-  //
-  //   if (i % 500 == 1) cerr << "\rDone #" << i;
-  // }
-  // cerr << endl;
 
   return 0;
 }
